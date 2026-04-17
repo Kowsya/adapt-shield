@@ -1,0 +1,56 @@
+# docker-compose.yml
+# Run both containers together: docker-compose up --build
+#
+# This creates:
+#  - security-layer container on port 8000 (ML model)
+#  - main-website container on port 9000 (protected site)
+# Both containers talk to each other via internal Docker network
+
+version: "3.8"
+
+services:
+
+  # ── Container 1: Security Layer (ML Model) ──────────────────
+  security-layer:
+    build:
+      context: ..          # Build from project root
+      dockerfile: docker/Dockerfile.security
+    container_name: adapt-shield-security
+    ports:
+      - "8000:8000"        # Accessible at http://localhost:8000
+    volumes:
+      - ../models:/app/models    # Mount models folder (live updates)
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - adapt-shield-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Container 2: Main Website ────────────────────────────────
+  main-website:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.website
+    container_name: adapt-shield-website
+    ports:
+      - "9000:9000"        # Accessible at http://localhost:9000
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SECURITY_LAYER_URL=http://security-layer:8000  # Internal URL
+    networks:
+      - adapt-shield-network
+    depends_on:
+      - security-layer
+    restart: unless-stopped
+
+# ── Shared Network ────────────────────────────────────────────
+networks:
+  adapt-shield-network:
+    driver: bridge
+    # Both containers can talk to each other using their service names
+    # e.g., security-layer can reach main-website at http://main-website:9000

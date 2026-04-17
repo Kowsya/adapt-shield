@@ -1,0 +1,38 @@
+# Core Data Science (Updated for 3.13)
+pandas>=2.2.0
+numpy>=1.26.0
+pyarrow>=17.0.0
+scikit-learn>=1.5.0
+xgboost>=2.0.3
+imbalanced-learn>=0.12.0
+
+# MLflow Experiment Tracking
+mlflow>=2.16.0
+
+# API Framework (Loosened to find 3.13 compatible versions)
+fastapi>=0.115.0
+uvicorn>=0.30.0
+pydantic>=2.7.0
+
+# Model Persistence
+joblib>=1.4.0
+
+# Monitoring & Drift Detection (Crucial update)
+evidently>=0.4.32
+prometheus-client>=0.20.0
+
+# Visualization
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# HTTP Client
+requests>=2.32.0
+httpx>=0.27.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.66.0
