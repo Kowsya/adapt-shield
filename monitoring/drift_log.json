@@ -1,0 +1,52 @@
+[
+  {
+    "timestamp": "2026-04-17T15:00:13.517221",
+    "drifted_columns": [
+      "Feature_0",
+      "Feature_1",
+      "Feature_2",
+      "Feature_5"
+    ],
+    "num_drifted": 4
+  },
+  {
+    "timestamp": "2026-04-17T15:01:02.888838",
+    "drifted_columns": [
+      "Feature_0",
+      "Feature_1",
+      "Feature_2",
+      "Feature_5"
+    ],
+    "num_drifted": 4
+  },
+  {
+    "timestamp": "2026-04-18T13:37:52.307098",
+    "drifted_columns": [
+      "Protocol",
+      "Flow Duration",
+      "Total Fwd Packets",
+      "Total Backward Packets",
+      "Fwd Packets Length Total",
+      "Fwd IAT Total",
+      "Bwd IAT Mean",
+      "PSH Flag Count",
+      "Subflow Bwd Packets"
+    ],
+    "num_drifted": 9
+  },
+  {
+    "timestamp": "2026-04-18T13:39:19.010349",
+    "drifted_columns": [
+      "Protocol",
+      "Flow Duration",
+      "Total Fwd Packets",
+      "Total Backward Packets",
+      "Fwd Packets Length Total",
+      "Fwd IAT Total",
+      "Bwd IAT Mean",
+      "PSH Flag Count",
+      "Subflow Bwd Packets"
+    ],
+    "num_drifted": 9
+  }
+]
